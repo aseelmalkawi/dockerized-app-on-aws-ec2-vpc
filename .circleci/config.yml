@@ -11,7 +11,7 @@ jobs:
           docker_layer_caching: true
       - add_ssh_keys:
           fingerprints:
-            - ""
+            - "76:66:92:09:7c:10:24:e9:0d:0a:b9:75:7b:31:c5:c3"
   deploy:
     docker: 
       - image: 
