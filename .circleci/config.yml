@@ -12,6 +12,21 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "ea:a0:16:11:69:50:01:10:ec:74:bd:21:d2:ab:ff:07"
+  build:
+    docker:
+      - image: docker:stable
+        auth:
+            username: $DOCKERHUB_USERNAME
+            password: $DOCKERHUB_ACCESS_TOKEN
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t coffee-shop .
+            docker tag coffee-shop aseelibrahimm/coffee-shop:lts
+            docker push aseelibrahimm/coffee-shop:lts
   deploy:
     docker: 
       - image: docker:stable
