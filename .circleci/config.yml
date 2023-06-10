@@ -18,10 +18,14 @@ jobs:
             username: $DOCKERHUB_USERNAME
             password: $DOCKERHUB_ACCESS_TOKEN
     steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       - run:
           name: Build & Push the Docker image
           command: |
-            docker build -t coffee-shop /.
+            docker build -t coffee-shop .
             docker tag coffee-shop aseelibrahimm/coffee-shop:lts
             docker push aseelibrahimm/coffee-shop:lts
   deploy:
