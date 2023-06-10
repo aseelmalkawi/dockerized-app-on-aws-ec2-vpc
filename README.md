@@ -2,7 +2,7 @@
 
 ![Figure 1: AWS ](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/Project.drawio.png)
 
-## Introduce the app we’ll work on 
+## Introducing the app we’ll work on 
 We have a coffee shop application we chose to work on to deploy to AWS using CircleCi as a CICD tool. We’ll containerize the application and pull the image from the EC2 that we’ll create. 
 In the below image, the application is opened locally still before we start the whole process. 
 
