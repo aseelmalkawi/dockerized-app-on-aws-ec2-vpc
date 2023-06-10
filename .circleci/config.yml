@@ -22,7 +22,7 @@ jobs:
       - run:
           name: ssh to ec2 and run the Image
           command: |
-               ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@35.90.94.5 " ssh -o 'StrictHostKeyChecking no' -i 'labsuser 4.pem' ubuntu@10.0.2.135 ' sudo docker run -d -p 80:80 --name coffeeApp aseelibrahimm/coffee-shop:1 '"
+               ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@35.90.94.5 " ssh -o 'StrictHostKeyChecking no' -i 'labsuser 4.pem' ubuntu@10.0.2.135"
               
 workflows:
   version: 2
