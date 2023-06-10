@@ -43,6 +43,9 @@ workflows:
     jobs:
       - test
       - build:
+          dockerfile: Dockerfile
+          path: .
+          tag: lts
           requires: 
             - test
       - deploy:
