@@ -22,32 +22,63 @@ After we built the Dockerfile and run it, we could access the application locall
 ## Push the image to the docker hub 
 After finishing the Dockerfile and building the image, we finally tagged it and pushed it to dockerhub, so the EC2 can pull it later through CircleCi. 
 
-![Figure 5: The pushed image on dockerhub ]()
+![Figure 5: The pushed image on dockerhub ](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/dockerhub.PNG)
 
 ## Create the GitHub repo 
-We create the repo and upload the project files  
+create the repo and upload the project files  
 
 ## Create config.yml 
 This is a configuration file for a CI/CD pipeline using CircleCI. It includes two jobs: "test" for testing and "deploy" for deploying a Docker image to  Docker Hub and running it on an EC2 instance. 
 
+## Deploying to AWS
 ## Create VPC 
-![Figure 7:](image link)
-
-## Create a Public Subnet in the VPC
-To allow routing from/to into the rnnetEdit Route in Route Table, and Add an internet gateway 
-![Figure 8:](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/public%20sub.png)
+![Figure 7: VPC](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/Screenshot%20(20).png)
 
 ## Create an internet gateway and attach it to the VPC 
-![Figure 9:](image link)
+![Figure 8: IGW](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/ig.png)
 
-## Create a security group that allows HTTP (s) and SSH traffic. 
-![Figure 10:](image link)
 
-## Create an EC2 instance in the public subnet 
-![Figure 11:](image link)
+## Create a Public and Private Subnet in the VPC
+Public Subnet:
+To allow routing from/to into internet, Edit Route in Route Table, and Add an internet gateway 
+![Figure 9: public Subnet](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/public%20sub.png)
 
-## Deploy the App to EC2 Instance 
-![Figure 12:](image link)
+then, configure Public Route table.
+![Figure 10: Public RT](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/public%20rt.png)
+
+Private Subnet:
+![Figure 11: private Subnet](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/private%20sub.png)
+
+then, configure Private Route table.
+![Figure 12: Private RT](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/private%20rt.png)
+
+## Create two security groups that allows HTTP (s) and SSH traffic. 
+![Figure 13: SG](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/sg.png)
+
+## Create two EC2 instances
+- EC2 instance in public subnet:
+![Figure 14: Public EC2](image link)
+
+- EC2 instance in private subnet:
+![Figure 15: Private EC2](image link)
+
+## Create a NAT Gateway in Public Subnet
+to enable connectivity to the internet in the private subnet
+![Figure 16:](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/nat.png)
+
+then, configure Private Route Table and add "nat gw" to the routes.
+
+## Deploy the App to EC2 Instance using CircleCI
+Read  [.circleci/config.yml](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/.circleci/config.yml)
+
+after committing the config file, a pipeline is triggered in CircleCI
+![Figure 17:](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/success.PNG)
+
+this config file do ssh to private EC2 using the public EC2 to build the docker image, push to dockerhub and run the container.
 
 ## Test the app on the browser by IP Address 
-![Figure 13:](image link)
+In order to browse to the application using the Public IP of Public Subnet, use Reverse Proxy.
+- install nginx then edit its configuration file.
+- browse to the public ip to open the app.
+- 
+![Figure 18:](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/3.PNG)
