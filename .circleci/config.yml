@@ -11,7 +11,7 @@ jobs:
           docker_layer_caching: true
       - add_ssh_keys:
           fingerprints:
-            - "76:66:92:09:7c:10:24:e9:0d:0a:b9:75:7b:31:c5:c3"
+            - "ea:a0:16:11:69:50:01:10:ec:74:bd:21:d2:ab:ff:07"
   deploy:
     docker: 
       - image: docker:stable
@@ -19,13 +19,11 @@ jobs:
             username: $DOCKERHUB_USERNAME
             password: $DOCKERHUB_ACCESS_TOKEN
     steps:
-#      - run:
-#           name: Login to dockerhub
-#           command: 
       - run:
           name: ssh to ec2 and run the Image
           command: |
-              ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@ec2-35-91-142-179.us-west-2.compute.amazonaws.com " sudo docker run -d -p 80:80 --name coffeeApp aseelibrahimm/coffee-shop:lts"
+               ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@ec2-34-227-108-64.compute-1.amazonaws.com " ssh -o 'StrictHostKeyChecking no' -i "labsuser 4.pem" ubuntu@172.16.2.138 ' sudo docker run -d -p 80:80 --name coffeeApp aseelibrahimm/coffee-shop:1 '"
+              
 workflows:
   version: 2
   build:
