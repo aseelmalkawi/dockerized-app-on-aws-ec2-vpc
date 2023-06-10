@@ -3,7 +3,6 @@ jobs:
   test:
     docker:
       - image: docker:stable
-        
     steps:
       - checkout
       - setup_remote_docker:
@@ -22,7 +21,7 @@ jobs:
       - run:
           name: Build & Push the Docker image
           command: |
-            docker build -t coffee-shop .
+            docker build -t coffee-shop /root
             docker tag coffee-shop aseelibrahimm/coffee-shop:lts
             docker push aseelibrahimm/coffee-shop:lts
   deploy:
@@ -43,9 +42,6 @@ workflows:
     jobs:
       - test
       - build:
-          dockerfile: Dockerfile
-          path: .
-          tag: lts
           requires: 
             - test
       - deploy:
