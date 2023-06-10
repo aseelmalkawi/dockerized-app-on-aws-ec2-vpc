@@ -27,6 +27,7 @@ jobs:
           command: |
             docker build -t coffee-shop .
             docker tag coffee-shop aseelibrahimm/coffee-shop:lts
+            docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
             docker push aseelibrahimm/coffee-shop:lts
   deploy:
     docker: 
