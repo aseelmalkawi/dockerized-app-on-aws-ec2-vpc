@@ -26,9 +26,9 @@ jobs:
           name: Build & Push the Docker image
           command: |
             docker build -t coffee-shop .
-            docker tag coffee-shop aseelibrahimm/coffee-shop:lts
+            docker tag coffee-shop aseelibrahimm/coffee-shop:latest
             docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
-            docker push aseelibrahimm/coffee-shop:lts
+            docker push aseelibrahimm/coffee-shop:latest
   deploy:
     docker: 
       - image: docker:stable
@@ -39,7 +39,7 @@ jobs:
       - run:
           name: ssh to ec2 and run the Image
           command: |
-               ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@ec2-52-38-177-250.us-west-2.compute.amazonaws.com " ssh -o 'StrictHostKeyChecking no' -i 'labsuser 4.pem' ubuntu@10.0.2.183 ' sudo docker run -d -p 80:80 --name coffeeApp aseelibrahimm/coffee-shop:lts '"
+               ssh -o "StrictHostKeyChecking no" -i "labsuser 4.pem" ubuntu@ec2-52-38-177-250.us-west-2.compute.amazonaws.com " ssh -o 'StrictHostKeyChecking no' -i 'labsuser 4.pem' ubuntu@10.0.2.183 ' sudo docker run -d -p 80:80 --name coffeeApp aseelibrahimm/coffee-shop:latest '"
               
 workflows:
   version: 2
