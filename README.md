@@ -1,6 +1,6 @@
 # Depoly Web Application To AWS EC2 Instance In Private Subnet
 
-![Figure 1: AWS ](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/Project.drawio.png)
+![Figure 1: AWS ](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/image.png)
 
 ## Introducing the app we’ll work on 
 We have a coffee shop application we chose to work on to deploy to AWS using CircleCi as a CICD tool. We’ll containerize the application and pull the image from the EC2 that we’ll create. 
@@ -57,10 +57,10 @@ then, configure Private Route table.
 
 ## Create two EC2 instances
 - EC2 instance in public subnet:
-![Figure 14: Public EC2](image link)
+![Figure 14: Public EC2](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/public-ec2.PNG)
 
 - EC2 instance in private subnet:
-![Figure 15: Private EC2](image link)
+![Figure 15: Private EC2](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/private-ec2.PNG)
 
 ## Create a NAT Gateway in Public Subnet
 to enable connectivity to the internet in the private subnet
