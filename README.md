@@ -1,4 +1,4 @@
-# Depoly Web Application To AWS EC2 Instance In Private Subnet
+# Deploy Web Application To AWS EC2 Instance In Private Subnet
 
 ![Figure 1: AWS ](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/image.png)
 
