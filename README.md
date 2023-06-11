@@ -80,5 +80,5 @@ this config file do ssh to private EC2 using the public EC2 to build the docker 
 In order to browse to the application using the Public IP of Public Subnet, use Reverse Proxy.
 - install nginx then edit its configuration file.
 - browse to the public ip to open the app.
-- 
+
 ![Figure 18:](https://github.com/aseelmalkawi/dockerized-coffee-shop/blob/main/doc%20imgs/3.PNG)
